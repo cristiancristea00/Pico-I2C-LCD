@@ -12,7 +12,6 @@ set(CMAKE_CXX_STANDARD 20)
 if (NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE STREQUAL "")
     set(CMAKE_BUILD_TYPE "Release" CACHE STRING "" FORCE)
     message("Using by default the Release build")
-    message("To build the Debug version pass the option -DCMAKE_BUILD_TYPE=Debug to CMake")
 endif ()
 
 # Set Debug build compiler arguments

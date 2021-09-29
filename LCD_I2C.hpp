@@ -78,10 +78,9 @@ class LCD_I2C final
     static constexpr byte COMMAND = 0x00;
     static constexpr byte CHAR = 0x01;
 
-    static constexpr byte CUSTOM_SYMBOL_SIZE = 8;
-
  public:
 
+    static constexpr byte CUSTOM_SYMBOL_SIZE = 8;
     using array = std::array<byte, CUSTOM_SYMBOL_SIZE>;
 
  private:
