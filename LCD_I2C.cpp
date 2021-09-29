@@ -4,7 +4,7 @@
  * @date September 27, 2021
  * @brief Source file for the LCD_I2C class.
  *
- * @copyright Copyright (C) 2021 Cristian Cristea. All rights reserved.
+ * @copyright Copyright (C) 2021 Cristian Cristea
  ******************************************************************************/
 
 #include "LCD_I2C.hpp"
@@ -166,28 +166,6 @@ void LCD_I2C::SetTextRightToLeft() noexcept
     Send_Command(ENTRY_MODE_SET | display_mode);
 }
 
-void LCD_I2C::JustifyRight() noexcept
-{
-    display_mode |= ENTRY_SHIFT_INCREMENT;
-    Send_Command(ENTRY_MODE_SET | display_mode);
-}
-
-void LCD_I2C::JustifyLeft() noexcept
-{
-    display_mode &= ~ENTRY_SHIFT_INCREMENT;
-    Send_Command(ENTRY_MODE_SET | display_mode);
-}
-
-void LCD_I2C::ScrollDisplayLeft() const noexcept
-{
-    Send_Command(CURSOR_SHIFT | DISPLAY_MOVE | MOVE_LEFT);
-}
-
-void LCD_I2C::ScrollDisplayRight() const noexcept
-{
-    Send_Command(CURSOR_SHIFT | DISPLAY_MOVE | MOVE_RIGHT);
-}
-
 void LCD_I2C::Clear() const noexcept
 {
     Send_Command(CLEAR_DISPLAY);
@@ -200,7 +178,7 @@ void LCD_I2C::Home() const noexcept
 
 void LCD_I2C::SetCursor(byte row, byte column) const noexcept
 {
-    static constexpr std::array ROW_OFFSETS = {0x00, 0x40, 0x14, 0x54};
+    static const std::array ROW_OFFSETS = {0x00, 0x40, 0x00 + columns, 0x40 + columns};
 
     row = std::min(rows, row);
     column = std::min(columns, column);
@@ -225,7 +203,7 @@ void LCD_I2C::PrintCustomChar(byte location) const noexcept
     Send_Register_Select(location);
 }
 
-void LCD_I2C::CreateCustomChar(byte location, std::array<byte, CUSTOM_SYMBOL_SIZE> char_map) const noexcept
+void LCD_I2C::CreateCustomChar(byte location, array const char_map) const noexcept
 {
     static constexpr byte MAX_CUSTOM_CHARS = 8;
 

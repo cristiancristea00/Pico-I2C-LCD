@@ -4,7 +4,7 @@
  * @date September 27, 2021
  * @brief Header file for the LCD_I2C class.
  *
- * @copyright Copyright (C) 2021 Cristian Cristea. All rights reserved.
+ * @copyright Copyright (C) 2021 Cristian Cristea
  ******************************************************************************/
 
 #pragma once
@@ -23,6 +23,7 @@ class LCD_I2C final
     using byte = uint8_t;
 
     // Commands
+
     static constexpr byte CLEAR_DISPLAY = 0x01;
     static constexpr byte RETURN_HOME = 0x02;
     static constexpr byte ENTRY_MODE_SET = 0x04;
@@ -33,12 +34,14 @@ class LCD_I2C final
     static constexpr byte SET_DDRAM_ADDR = 0x80;
 
     // Flags for display entry mode set
+
     static constexpr byte ENTRY_RIGHT = 0x00;
     static constexpr byte ENTRY_LEFT = 0x02;
     static constexpr byte ENTRY_SHIFT_INCREMENT = 0x01;
     static constexpr byte ENTRY_SHIFT_DECREMENT = 0x00;
 
     // Flags for display on/off control
+
     static constexpr byte DISPLAY_ON = 0x04;
     static constexpr byte DISPLAY_OFF = 0x00;
     static constexpr byte CURSOR_ON = 0x02;
@@ -47,12 +50,14 @@ class LCD_I2C final
     static constexpr byte BLINK_OFF = 0x00;
 
     // Flags for cursor or display shift
+
     static constexpr byte DISPLAY_MOVE = 0x08;
     static constexpr byte CURSOR_MOVE = 0x00;
     static constexpr byte MOVE_RIGHT = 0x04;
     static constexpr byte MOVE_LEFT = 0x00;
 
     // Flags for function set
+
     static constexpr byte MODE_8_BIT = 0x10;
     static constexpr byte MODE_4_BIT = 0x00;
     static constexpr byte LINE_2 = 0x08;
@@ -61,10 +66,12 @@ class LCD_I2C final
     static constexpr byte DOTS_5x8 = 0x00;
 
     // Flags for backlight control
+
     static constexpr byte BACKLIGHT = 0x08;
     static constexpr byte NO_BACKLIGHT = 0x00;
 
     // Special flags
+
     static constexpr byte ENABLE = 0x04;
     static constexpr byte READ_WRITE = 0x02;
     static constexpr byte REGISTER_SELECT = 0x01;
@@ -72,6 +79,12 @@ class LCD_I2C final
     static constexpr byte CHAR = 0x01;
 
     static constexpr byte CUSTOM_SYMBOL_SIZE = 8;
+
+ public:
+
+    using array = std::array<byte, CUSTOM_SYMBOL_SIZE>;
+
+ private:
 
     byte address {};
     byte columns {};
@@ -81,7 +94,7 @@ class LCD_I2C final
     byte display_control {};
     byte display_mode {};
 
-    i2c_inst * I2C_instance = nullptr;
+    i2c_inst * I2C_instance {nullptr};
 
     /**
      * Wrapper function for SDK's internal I2C protocol write function.
@@ -218,26 +231,6 @@ class LCD_I2C final
     void SetTextRightToLeft() noexcept;
 
     /**
-     * Right justify the text.
-     */
-    void JustifyRight() noexcept;
-
-    /**
-     * Left justify the text.
-     */
-    void JustifyLeft() noexcept;
-
-    /**
-     * Scrolls the display to the left.
-     */
-    void ScrollDisplayLeft() const noexcept;
-
-    /**
-     * Scrolls the display to the right.
-     */
-    void ScrollDisplayRight() const noexcept;
-
-    /**
      * Clears the display and sets cursor's position at the beginning of the
      * screen.
      */
@@ -289,6 +282,6 @@ class LCD_I2C final
      * @param location The memory address
      * @param char_map The byte array
      */
-    void CreateCustomChar(byte location, std::array<byte, CUSTOM_SYMBOL_SIZE> char_map) const noexcept;
+    void CreateCustomChar(byte location, array char_map) const noexcept;
 };
 

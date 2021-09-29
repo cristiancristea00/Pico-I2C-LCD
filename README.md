@@ -1,1 +1,1 @@
-# Raspberry Pi Pico - Liquid Crystal Display I2C library
+# Raspberry Pi Pico - I2C Liquid Crystal Display Library
