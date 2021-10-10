@@ -19,8 +19,8 @@ set(CMAKE_CXX_FLAGS_DEBUG "-pipe -g -O0 -Wfatal-errors -Wpedantic -Wall -Wextra 
 set(CMAKE_C_FLAGS_DEBUG "-pipe -g -O0 -Wfatal-errors -Wpedantic -Wall -Wextra -Wconversion -Wshadow=local -Wdouble-promotion -Wformat=2 -Wformat-overflow=2 -Wformat-nonliteral -Wformat-security -Wformat-truncation=2 -Wnull-dereference -Wimplicit-fallthrough=3 -Wshift-overflow=2 -Wswitch-default -Wunused-parameter -Wunused-const-variable=2 -Wstrict-overflow=4 -Wstringop-overflow=3 -Wsuggest-attribute=pure -Wsuggest-attribute=const -Wsuggest-attribute=noreturn -Wmissing-noreturn -Wsuggest-attribute=malloc -Wsuggest-attribute=format -Wmissing-format-attribute -Wsuggest-attribute=cold -Walloc-zero -Walloca -Wattribute-alias=2 -Wduplicated-branches -Wcast-qual")
 
 # Set Release build compiler arguments
-set(CMAKE_CXX_FLAGS_RELEASE "-pipe -O2 -fno-builtin")
-set(CMAKE_C_FLAGS_RELEASE "-pipe -O2 -fno-builtin")
+set(CMAKE_CXX_FLAGS_RELEASE "-pipe -Os -fno-builtin")
+set(CMAKE_C_FLAGS_RELEASE "-pipe -Os -fno-builtin")
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
